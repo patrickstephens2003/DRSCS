@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Academic Programs | Du-port Road Baptist Church School</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-inner">
+        <a class="brand" href="index.html">
+          <img src="assets/logo.svg" alt="School logo" />
+          <div>
+            <h1>Du-port Road Baptist Church School</h1>
+            <span>Nurturing minds, building futures</span>
+          </div>
+        </a>
+
+        <button id="mobile-open" class="hamburger" aria-label="Open navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav id="site-nav" class="nav-links"></nav>
+      </div>
+
+      <div id="mobile-nav" class="mobile-nav">
+        <nav></nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"1200\" height=\"500\"%3E%3Crect width=\"1200\" height=\"500\" fill=\"%230b3d91\"/%3E%3Ctext x=\"50%25\" y=\"55%25\" fill=\"%23ffffff\" font-size=\"42\" font-family=\"Arial, Helvetica, sans-serif\" text-anchor=\"middle\"%3EAcademic Programs%3C/text%3E%3C/svg%3E');">
+        <div class="hero-content">
+          <h2>Academic Programs</h2>
+          <p>We offer a clear academic pathway from Nursery through Senior High with a focus on excellence and character development.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Our Departments</h2>
+        <div class="grid grid-2" id="program-list"></div>
+      </section>
+
+      <section>
+        <h2>Class Levels</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Nursery</h3>
+            <p>Play-based learning and foundational literacy and numeracy.</p>
+          </div>
+          <div class="card">
+            <h3>Primary</h3>
+            <p>Balanced academics with a strong focus on values and skill building.</p>
+          </div>
+          <div class="card">
+            <h3>Junior High</h3>
+            <p>Preparation for external examinations and deepening subject knowledge.</p>
+          </div>
+          <div class="card">
+            <h3>Senior High</h3>
+            <p>Focused pathways with electives and preparation for tertiary education.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Academic Calendar</h2>
+        <p>Download the latest academic calendar to keep track of term dates, exams, and holidays.</p>
+        <button class="button primary" id="download-calendar">Download Academic Calendar</button>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div>
+          <h4>Contact</h4>
+          <div id="footer-contact"></div>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul style="list-style:none; padding:0; margin:0;">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="portal.html">Student Portal</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul style="list-style:none; padding:0; margin:0;">
+            <li><a href="gallery.html">Photo Gallery</a></li>
+            <li><a href="staff.html">Staff Directory</a></li>
+            <li><a href="admin.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="small" style="text-align:center; margin-top:28px;">
+        &copy; ${new Date().getFullYear()} Du-port Road Baptist Church School. All rights reserved.
+      </p>
+    </footer>
+
+    <script src="js/data.js" defer></script>
+    <script src="js/site.js" defer></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const container = document.getElementById("program-list");
+        if (!container) return;
+        container.innerHTML = SITE.programs
+          .map(
+            (program) => `
+            <div class="card">
+              <h3>${program.name}</h3>
+              <p>${program.overview}</p>
+              <p><strong>Curriculum:</strong></p>
+              <ul>
+                ${program.curriculum.map((c) => `<li>${c}</li>`).join("")}
+              </ul>
+            </div>
+          `
+          )
+          .join("");
+
+        document.getElementById("download-calendar").addEventListener("click", () => {
+          const content = "Academic Calendar\n\nTerm 1: Jan 12 - Mar 22\nTerm 2: Apr 5 - Jun 12\nTerm 3: Jul 6 - Sep 15\n\nHolidays and exam dates will be announced via the student portal.";
+          generateFileDownload("DRBCS_Academic_Calendar.txt", content, "text/plain");
+        });
+      });
+    </script>
+  </body>
+</html>

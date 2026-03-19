@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About | Du-port Road Baptist Church School</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-inner">
+        <a class="brand" href="index.html">
+          <img src="assets/logo.svg" alt="School logo" />
+          <div>
+            <h1>Du-port Road Baptist Church School</h1>
+            <span>Nurturing minds, building futures</span>
+          </div>
+        </a>
+
+        <button id="mobile-open" class="hamburger" aria-label="Open navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav id="site-nav" class="nav-links"></nav>
+      </div>
+
+      <div id="mobile-nav" class="mobile-nav">
+        <nav></nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"1200\" height=\"500\"%3E%3Crect width=\"1200\" height=\"500\" fill=\"%23d62828\"/%3E%3Ctext x=\"50%25\" y=\"55%25\" fill=\"%23ffffff\" font-size=\"42\" font-family=\"Arial, Helvetica, sans-serif\" text-anchor=\"middle\"%3EAbout Our School%3C/text%3E%3C/svg%3E');">
+        <div class="hero-content">
+          <h2>About Du-port Road Baptist Church School</h2>
+          <p>Our school is dedicated to providing a safe and inspiring environment for students to grow academically, morally, and spiritually.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Our History</h2>
+        <p>Since its founding, Du-port Road Baptist Church School has served the community with a commitment to academic excellence and Christian values. We are proud to have graduated generations of students who contribute positively to society.</p>
+      </section>
+
+      <section>
+        <h2>Mission, Vision & Core Values</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Mission</h3>
+            <p>To provide a nurturing and faith-based learning environment that empowers students to achieve academic excellence and character development.</p>
+          </div>
+          <div class="card">
+            <h3>Vision</h3>
+            <p>To be recognized as a leading school in Liberia where learners care for one another and succeed academically.</p>
+          </div>
+        </div>
+        <div class="grid grid-2" style="margin-top: 18px;">
+          <div class="card">
+            <h3>Core Values</h3>
+            <ul>
+              <li>Faith</li>
+              <li>Integrity</li>
+              <li>Respect</li>
+              <li>Community</li>
+              <li>Excellence</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Accreditation & Affiliations</h3>
+            <p>Du-port Road Baptist Church School is accredited by the Ministry of Education and partners with national and international educational organizations to ensure high standards.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Leadership</h2>
+        <div id="leadership-profiles" class="grid grid-2"></div>
+      </section>
+
+      <section>
+        <h2>Achievements</h2>
+        <div class="card">
+          <ul>
+            <li>Top performers in national exams for the last 3 years</li>
+            <li>Winner of the regional science fair</li>
+            <li>Strong track record in community service projects</li>
+            <li>Growing alumni network supporting current students</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div>
+          <h4>Contact</h4>
+          <div id="footer-contact"></div>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul style="list-style:none; padding:0; margin:0;">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="portal.html">Student Portal</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul style="list-style:none; padding:0; margin:0;">
+            <li><a href="gallery.html">Photo Gallery</a></li>
+            <li><a href="staff.html">Staff Directory</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="admin.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="small" style="text-align:center; margin-top:28px;">
+        &copy; ${new Date().getFullYear()} Du-port Road Baptist Church School. All rights reserved.
+      </p>
+    </footer>
+
+    <script src="js/data.js" defer></script>
+    <script src="js/site.js" defer></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const leadershipContainer = document.getElementById("leadership-profiles");
+        if (!leadershipContainer) return;
+        const leaders = SITE.staff.filter((s) => s.role.toLowerCase().includes("principal") || s.role.toLowerCase().includes("head"));
+        leadershipContainer.innerHTML = leaders
+          .map(
+            (l) => `
+            <div class="card">
+              <h3>${l.name}</h3>
+              <p><strong>${l.role}</strong></p>
+              <p>${l.department}</p>
+              <p><a href="mailto:${l.email}">${l.email}</a></p>
+            </div>
+          `
+          )
+          .join("");
+      });
+    </script>
+  </body>
+</html>

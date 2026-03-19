@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News & Events | Du-port Road Baptist Church School</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-inner">
+        <a class="brand" href="index.html">
+          <img src="assets/logo.svg" alt="School logo" />
+          <div>
+            <h1>Du-port Road Baptist Church School</h1>
+            <span>Nurturing minds, building futures</span>
+          </div>
+        </a>
+
+        <button id="mobile-open" class="hamburger" aria-label="Open navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav id="site-nav" class="nav-links"></nav>
+      </div>
+
+      <div id="mobile-nav" class="mobile-nav">
+        <nav></nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"1200\" height=\"500\"%3E%3Crect width=\"1200\" height=\"500\" fill=\"%234e9a76\"/%3E%3Ctext x=\"50%25\" y=\"55%25\" fill=\"%23ffffff\" font-size=\"42\" font-family=\"Arial, Helvetica, sans-serif\" text-anchor=\"middle\"%3ENews & Events%3C/text%3E%3C/svg%3E');">
+        <div class="hero-content">
+          <h2>News & Events</h2>
+          <p>Stay connected with announcements, stories, and event updates from the school.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Filter by category</h2>
+        <div id="news-filters" style="display:flex; gap:10px; flex-wrap:wrap;"></div>
+      </section>
+
+      <section>
+        <div id="news-list" class="grid grid-2"></div>
+      </section>
+
+      <section>
+        <h2>Upcoming Events</h2>
+        <div id="events-list" class="grid grid-2"></div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div>
+          <h4>Contact</h4>
+          <div id="footer-contact"></div>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul style="list-style:none; padding:0; margin:0;">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="portal.html">Student Portal</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul style="list-style:none; padding:0; margin:0;">
+            <li><a href="gallery.html">Photo Gallery</a></li>
+            <li><a href="staff.html">Staff Directory</a></li>
+            <li><a href="admin.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="small" style="text-align:center; margin-top:28px;">
+        &copy; ${new Date().getFullYear()} Du-port Road Baptist Church School. All rights reserved.
+      </p>
+    </footer>
+
+    <script src="js/data.js" defer></script>
+    <script src="js/site.js" defer></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const newsList = document.getElementById("news-list");
+        const filters = document.getElementById("news-filters");
+        const eventsList = document.getElementById("events-list");
+
+        function renderNews(category) {
+          const news = SITE.news
+            .filter((item) => (category ? item.category === category : true))
+            .sort((a, b) => (a.date < b.date ? 1 : -1));
+
+          newsList.innerHTML = news
+            .map(
+              (item) => `
+          <div class="card" id="${item.id}">
+            <img src="${item.image}" alt="${item.title}" style="width:100%; border-radius: var(--radius); height: 180px; object-fit: cover;" />
+            <h3>${item.title}</h3>
+            <p class="small">${formatDate(item.date)} • <span class="badge">${item.category}</span></p>
+            <p>${item.excerpt}</p>
+            <button class="button secondary" data-id="${item.id}">Read more</button>
+          </div>
+        `
+            )
+            .join("");
+
+          $all("button[data-id]").forEach((button) => {
+            button.addEventListener("click", () => {
+              const id = button.dataset.id;
+              const item = SITE.news.find((n) => n.id === id);
+              if (!item) return;
+              showNewsModal(item);
+            });
+          });
+        }
+
+        function showNewsModal(item) {
+          const overlay = document.createElement("div");
+          overlay.style.position = "fixed";
+          overlay.style.inset = "0";
+          overlay.style.background = "rgba(0,0,0,0.48)";
+          overlay.style.display = "flex";
+          overlay.style.alignItems = "center";
+          overlay.style.justifyContent = "center";
+          overlay.style.padding = "18px";
+          overlay.style.zIndex = "9999";
+
+          const modal = document.createElement("div");
+          modal.style.background = "white";
+          modal.style.padding = "26px";
+          modal.style.borderRadius = "18px";
+          modal.style.maxWidth = "800px";
+          modal.style.maxHeight = "90vh";
+          modal.style.overflowY = "auto";
+          modal.innerHTML = `
+            <h2>${item.title}</h2>
+            <p class="small">${formatDate(item.date)} • <span class="badge">${item.category}</span></p>
+            <div style="margin: 16px 0;">
+              <img src="${item.image}" alt="${item.title}" style="width:100%; border-radius: 12px; max-height: 240px; object-fit: cover;" />
+            </div>
+            <div>${item.content}</div>
+            <div style="margin-top: 20px; text-align: right;">
+              <button class="button secondary" id="close-news-modal">Close</button>
+            </div>
+          `;
+
+          overlay.appendChild(modal);
+          document.body.appendChild(overlay);
+
+          document.getElementById("close-news-modal").addEventListener("click", () => {
+            overlay.remove();
+          });
+
+          overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) overlay.remove();
+          });
+        }
+
+        function renderFilters() {
+          const categories = Array.from(new Set(SITE.news.map((n) => n.category)));
+          filters.innerHTML = `
+            <button class="button secondary" data-filter="">All</button>
+            ${categories
+              .map((cat) => `<button class="button secondary" data-filter="${cat}">${cat}</button>`)
+              .join("")}
+          `;
+          filters.querySelectorAll("button").forEach((btn) => {
+            btn.addEventListener("click", () => {
+              const category = btn.dataset.filter;
+              renderNews(category);
+            });
+          });
+        }
+
+        function renderEvents() {
+          eventsList.innerHTML = SITE.events
+            .sort((a, b) => (a.date < b.date ? 1 : -1))
+            .map(
+              (event) => `
+            <div class="card">
+              <h3>${event.title}</h3>
+              <p class="small">${formatDate(event.date)} • ${event.time}</p>
+              <p><strong>Location:</strong> ${event.location}</p>
+              <p>${event.description}</p>
+            </div>
+          `
+            )
+            .join("");
+        }
+
+        renderFilters();
+        renderNews();
+        renderEvents();
+
+        const hashId = window.location.hash.replace("#", "");
+        if (hashId) {
+          const item = SITE.news.find((n) => n.id === hashId);
+          if (item) showNewsModal(item);
+        }
+      });
+    </script>
+  </body>
+</html>

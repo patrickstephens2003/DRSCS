@@ -1,0 +1,184 @@
+git remote set-url origin https://github.com/YOUR_ACTUAL_USERNAME/YOUR_REPO_NAME.gitgit remote set-url origin https://github.com/YOUR_ACTUAL_USERNAME/YOUR_REPO_NAME.gitgit remote set-url origin https://github.com/YOUR_ACTUAL_USERNAME/YOUR_REPO_NAME.gitgit push -u origin master<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photo Gallery | Du-port Road Baptist Church School</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-inner">
+        <a class="brand" href="index.html">
+          <img src="assets/logo.svg" alt="School logo" />
+          <div>
+            <h1>Du-port Road Baptist Church School</h1>
+            <span>Nurturing minds, building futures</span>
+          </div>
+        </a>
+
+        <button id="mobile-open" class="hamburger" aria-label="Open navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav id="site-nav" class="nav-links"></nav>
+      </div>
+
+      <div id="mobile-nav" class="mobile-nav">
+        <nav></nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"1200\" height=\"500\"%3E%3Crect width=\"1200\" height=\"500\" fill=\"%23d62828\"/%3E%3Ctext x=\"50%25\" y=\"55%25\" fill=\"%23ffffff\" font-size=\"42\" font-family=\"Arial, Helvetica, sans-serif\" text-anchor=\"middle\"%3EPhoto Gallery%3C/text%3E%3C/svg%3E');">
+        <div class="hero-content">
+          <h2>Photo Gallery</h2>
+          <p>Capturing moments of learning, growth, and community at DRBC School.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Albums</h2>
+        <div id="gallery-albums" class="grid grid-2"></div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div>
+          <h4>Contact</h4>
+          <div id="footer-contact"></div>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul style="list-style:none; padding:0; margin:0;">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="portal.html">Student Portal</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul style="list-style:none; padding:0; margin:0;">
+            <li><a href="staff.html">Staff Directory</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="admin.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="small" style="text-align:center; margin-top:28px;">
+        &copy; ${new Date().getFullYear()} Du-port Road Baptist Church School. All rights reserved.
+      </p>
+    </footer>
+
+    <script src="js/data.js" defer></script>
+    <script src="js/site.js" defer></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const albumsContainer = document.getElementById("gallery-albums");
+        if (!albumsContainer) return;
+
+        const albums = [
+          {
+            title: "Science Fair 2026",
+            description: "Students showcasing innovative projects and experiments.",
+            image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='640' height='360' fill='%230b3d91'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' font-size='28' font-family='Arial, Helvetica, sans-serif' text-anchor='middle'%3EScience Fair%3C/text%3E%3C/svg%3E",
+            photos: [
+              "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='640' height='360' fill='%23d62828'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' font-size='28' font-family='Arial, Helvetica, sans-serif' text-anchor='middle'%3EProject 1%3C/text%3E%3C/svg%3E",
+              "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='640' height='360' fill='%2352b788'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' font-size='28' font-family='Arial, Helvetica, sans-serif' text-anchor='middle'%3EProject 2%3C/text%3E%3C/svg%3E",
+            ],
+          },
+          {
+            title: "Sports Day 2026",
+            description: "A day of competition, teamwork, and school spirit.",
+            image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='640' height='360' fill='%23d62828'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' font-size='28' font-family='Arial, Helvetica, sans-serif' text-anchor='middle'%3ESports Day%3C/text%3E%3C/svg%3E",
+            photos: [
+              "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='640' height='360' fill='%23ff7f11'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' font-size='28' font-family='Arial, Helvetica, sans-serif' text-anchor='middle'%3ERace 1%3C/text%3E%3C/svg%3E",
+              "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='640' height='360' fill='%230b3d91'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' font-size='28' font-family='Arial, Helvetica, sans-serif' text-anchor='middle'%3ERace 2%3C/text%3E%3C/svg%3E",
+            ],
+          },
+          {
+            title: "Graduation Ceremony 2025",
+            description: "Celebrating the achievements of our graduating class.",
+            image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='640' height='360' fill='%2352b788'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' font-size='28' font-family='Arial, Helvetica, sans-serif' text-anchor='middle'%3EGraduation%3C/text%3E%3C/svg%3E",
+            photos: [
+              "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='640' height='360' fill='%23d62828'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' font-size='28' font-family='Arial, Helvetica, sans-serif' text-anchor='middle'%3ECeremony%3C/text%3E%3C/svg%3E",
+              "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='640' height='360' fill='%23ff7f11'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' font-size='28' font-family='Arial, Helvetica, sans-serif' text-anchor='middle'%3EFamilies%3C/text%3E%3C/svg%3E",
+            ],
+          },
+        ];
+
+        albumsContainer.innerHTML = albums
+          .map(
+            (album) => `
+          <div class="card album-card" data-photos='${JSON.stringify(album.photos)}'>
+            <img src="${album.image}" alt="${album.title}" style="width:100%; border-radius: var(--radius); height: 200px; object-fit: cover;" />
+            <h3>${album.title}</h3>
+            <p>${album.description}</p>
+            <button class="button primary">View Album</button>
+          </div>
+        `
+          )
+          .join("");
+
+        document.querySelectorAll(".album-card button").forEach((btn, index) => {
+          btn.addEventListener("click", () => {
+            const album = albums[index];
+            showAlbumModal(album);
+          });
+        });
+
+        function showAlbumModal(album) {
+          const overlay = document.createElement("div");
+          overlay.style.position = "fixed";
+          overlay.style.inset = "0";
+          overlay.style.background = "rgba(0,0,0,0.48)";
+          overlay.style.display = "flex";
+          overlay.style.alignItems = "center";
+          overlay.style.justifyContent = "center";
+          overlay.style.padding = "18px";
+          overlay.style.zIndex = "9999";
+
+          const modal = document.createElement("div");
+          modal.style.background = "white";
+          modal.style.padding = "26px";
+          modal.style.borderRadius = "18px";
+          modal.style.maxWidth = "900px";
+          modal.style.maxHeight = "90vh";
+          modal.style.overflowY = "auto";
+          modal.innerHTML = `
+            <h2>${album.title}</h2>
+            <p>${album.description}</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 20px;">
+              ${album.photos
+                .map(
+                  (photo) => `
+                <img src="${photo}" alt="Photo" style="width:100%; border-radius: 12px; height: 150px; object-fit: cover; cursor: pointer;" />
+              `
+                )
+                .join("")}
+            </div>
+            <div style="margin-top: 20px; text-align: right;">
+              <button class="button secondary" id="close-gallery-modal">Close</button>
+            </div>
+          `;
+
+          overlay.appendChild(modal);
+          document.body.appendChild(overlay);
+
+          document.getElementById("close-gallery-modal").addEventListener("click", () => {
+            overlay.remove();
+          });
+
+          overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) overlay.remove();
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
